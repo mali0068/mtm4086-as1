@@ -9,6 +9,7 @@
 <body>
 
     <div id="wrapper">
+	<!--This is a small change-->
         <div id="header">
             <div class="awe" id="awesome1">
                 <p>Lightning!</p>
