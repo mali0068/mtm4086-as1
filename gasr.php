@@ -20,7 +20,7 @@ if(isset($_POST['btnSubmit'])){
 	
 	//echo "headers: " . $headers . " / subject: " . $subject . " / message: " . $msg;
 	
-    $ret = mail('broken@gasr.com', $subject, $msg, $headers);
+    $ret = mail(/*'broken@gasr.com'*/'christian.griffin@live.com', $subject, $msg, $headers);
 	
     if($ret){
         echo "Your message is important to us. We will begin ignoring it immediately.";
