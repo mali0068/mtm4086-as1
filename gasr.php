@@ -1,26 +1,31 @@
 <?php
 
-if(isset($_POST['btnSent'])){
+if(isset($_POST['btnSubmit'])){
     //set the headers inside of a variable (so we can use them in the mail function later)
-    $headers = "From: Kristelle <macsween@rocketmail.com> \n";
+    $headers = "From: GASR Error Report \n";
     // the \n is a newline character - and needs to be used to add things to the headers
-    $headers .= "Reply-To: Nick <nick@dede.com> \n";
+    $headers .= "Reply-To: " . trim($_POST['email']) . "\n";
     // . is the PHP concatenation character - so .= adds to whatever is currently in the variable
     //other headers: CC:, BCC:
     $headers .= "Content-Type: text/plain; charset=\"utf-8\" \n";
     //this sets the email type as just plain text
 
     //get subject and message from user-input
-    $subject = trim($_POST['sub']);
-    $msg = trim($_POST['comm']);
+    $subject = $_POST['problem'];
+	$msg = "Character:" . $_POST['charType'] . "\n";
+    $msg .= "Message:" . trim($_POST['message']);
     //a plain text email just needs text - nothing special
 
     //mail function: who the email is going to, the subject, the message, and any headers (if present)
-    $ret = mail('bob@bob.com', $subject, $msg, $headers);
+	
+	//echo "headers: " . $headers . " / subject: " . $subject . " / message: " . $msg;
+	
+    $ret = mail('broken@gasr.com', $subject, $msg, $headers);
+	
     if($ret){
-        echo "The email was successfully sent!";
+        echo "Your message is important to us. We will begin ignoring it immediately.";
     }else{
-        echo "This mail server doesn't exist.";
+        echo "Your message is so important to us, we sent it to an email server that doesn't exist!";
     }
 }
 
@@ -87,13 +92,13 @@ if(isset($_POST['btnSent'])){
             <div id="formright">                
                 <div class="formbox">
                 	<p>Type of problem:</p>
-                    <input type="radio" class="charField checkbox" id="rad1" name="problem" />
+                    <input type="radio" class="charField checkbox" id="rad1" name="problem" value="I played your game too much and my mouse/keyboard broke." checked/>
                     <label for="rad1">I played your game too much and my mouse/keyboard broke.</label>
-                    <input type="radio" class="charField checkbox" id="rad2" name="problem" />
+                    <input type="radio" class="charField checkbox" id="rad2" name="problem" value="I have no significant other.  I need your sexy armours!"/>
                 	<label for="rad2">I have no significant other.  I need your sexy armours!</label>
-                    <input type="radio" class="charField checkbox" id="rad3" name="problem" />
+                    <input type="radio" class="charField checkbox" id="rad3" name="problem" value="My account was stolen by hackers."/>
                     <label for="rad3">My account was stolen by hackers.</label>
-                    <input type="radio" class="charField checkbox" id="rad4" name="problem" />
+                    <input type="radio" class="charField checkbox" id="rad4" name="problem" value="I don't have a problem, I'm just lonely and want to talk to someone."/>
                     <label for="rad4">I don't have a problem, I'm just lonely and want to talk to someone.</label>
                 </div>
             </div>       
