@@ -2,7 +2,7 @@
 
 if(isset($_POST['btnSubmit'])){
     //set the headers inside of a variable (so we can use them in the mail function later)
-    $headers = "From: GASR Error Report \n";
+    $headers = "From: error@gasr.com \n";
     // the \n is a newline character - and needs to be used to add things to the headers
     $headers .= "Reply-To: " . trim($_POST['email']) . "\n";
     // . is the PHP concatenation character - so .= adds to whatever is currently in the variable
@@ -12,8 +12,8 @@ if(isset($_POST['btnSubmit'])){
 
     //get subject and message from user-input
     $subject = $_POST['problem'];
-	$msg = "Character:" . $_POST['charType'] . "\n";
-    $msg .= "Message:" . trim($_POST['message']);
+	$msg = "Character: " . $_POST['charType'] . "\n";
+    $msg .= "Message: " . trim($_POST['message']);
     //a plain text email just needs text - nothing special
 
     //mail function: who the email is going to, the subject, the message, and any headers (if present)
@@ -74,12 +74,12 @@ if(isset($_POST['btnSubmit'])){
                 <div class="formbox">
                     <label for"charType">Your Character:</label>
                     <select id="charType" name="charType" class="charField">
-                    	<option value="X">Select your character...</option>
-                        <option value="CH">Compost Heap</option>
-                        <option value="F">Felix</option>
-                        <option value="RP">Robo-Pig</option>
-                        <option value="SL">Slime Man</option>
-                        <option value="SM">Sock Monster</option>
+                    	<option value="No character selected.">Select your character...</option>
+                        <option value="Compost Heap">Compost Heap</option>
+                        <option value="Felix">Felix</option>
+                        <option value="Robo-Pig">Robo-Pig</option>
+                        <option value="Slime Man">Slime Man</option>
+                        <option value="Sock Monster">Sock Monster</option>
                     </select>            
                 </div>
                 
