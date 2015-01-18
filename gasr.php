@@ -1,3 +1,35 @@
+<?php
+
+if(isset($_POST['btnSubmit'])){
+	
+    // sets the headers inside of a variable
+	$email = trim($_POST['email']); // will also be used on its own later
+    $headers = "From: ". $email ." \n";
+        // \n adds a new line character - and needs to be used to add things to the headers
+    $headers .= "Reply-To: Broken <broken@gasr.com> \n";
+    $headers .= "Content-Type: text/plain; charset=\"utf-8\" \n";
+    // this set the email type as just plain text
+
+    // get character type, message, and the problem from user-input
+	$subject = "A problem with your game";
+	$char = "Character: " . $_POST['charType'];
+    $mailmsg = "Message: " .trim($_POST['message']);
+	$prob = "Problem" . $_POST["problem"];
+	
+	$msg = $email ." \n". $char ." \n". $mailmsg ." \n".  $prob;
+	
+    // mail function: who the email is going to, the subject, the message, and any headers (if present)
+    $ret = mail('broken@gasr.com', $subject, $msg, $headers);
+    if($ret){
+        echo "The email was successfully sent!";
+    }else{
+        "This mail server doesn't exist.";
+    }
+	
+}
+
+?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -28,7 +60,7 @@
                 <h3>Game Broken?</h3>
                 <h4>...that's too bad.</h4>
             </div>
-            <form name="yourChar" id="yourChar" action="char.php" method="get">
+			<form name="yourChar" id="yourChar" action="gasr.php" method="post" >
             
             <div id="formleft">
                 <div class="formbox">
