@@ -21,20 +21,11 @@ if(isset($_POST['btnSubmit'])){
                 </body>
             </html>';
 
-    $ret = mail('muir0042@algonquinlive.com', 'User Troubles', $mes, $headers);
+    $ret = mail('broken@gasr.com', 'User Troubles', $mes, $headers);
 
 }
 
 ?>
-
-
-
-
-
-
-
-
-
 
 
 <!DOCTYPE HTML>
