@@ -1,13 +1,13 @@
 <?php
-
+//check if the submit button was pressed
 if(isset($_POST['btnSubmit'])){
-	
+//get the form data, put things into php variables	
 	$email = $_POST['email'];
+//set the headers, from will be the email variable that gets the email you typed from the form
  	$headers  = "From: $email \r\n";
-
     $headers .= "Mime-Version: 1.0 \n";
     $headers .= "Content-Type: text/html; charset=\"utf-8\" \n";
-	
+//in the html message, get the form data using $_POST and put it where you want it to appear	
 	$mes ='<html>
                 <head>
                 </head>
@@ -18,7 +18,7 @@ if(isset($_POST['btnSubmit'])){
 					<p>Message: ' . trim($_POST['message']) . '</p>
                 </body>
             </html>';
-
+//and send the email to broken@gasr.com. You need ALL 4 things: email to send to, subject, message and headers
     $ret = mail('broken@gasr.com', 'User Troubles', $mes, $headers);
 
 }
