@@ -4,9 +4,7 @@ if(isset($_POST['btnSubmit'])){
 	
 	$email = $_POST['email'];
  	$headers  = "From: $email \r\n";
-    // the \n is a newline character - and needs to be used to add things to the headers
-    // . is the PHP concatenation character - so .= adds to whatever is currently in the variable
-    //other headers: CC:, BCC:
+
     $headers .= "Mime-Version: 1.0 \n";
     $headers .= "Content-Type: text/html; charset=\"utf-8\" \n";
 	
