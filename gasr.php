@@ -1,3 +1,29 @@
+<?php 
+    if(isset($_POST['btnSubmit'])){
+        //set the headers
+        $headers = "From: ".trim($_POST['email'])."<".trim($_POST['email'])."> \n";
+        $headers .= "Reply-To: ".trim($_POST['email'])." <".trim($_POST['email'])."> \n";
+        $headers .= "Content-Type: text/plain; charset=\"utf-8\" \n";
+
+        //set where the email is going
+        $to = "broken@gasr.com";
+        //set the subject
+        $subject = $_POST['problem'];
+        //set the message
+        $msg = $_POST['charType']."\n".trim($_POST['message']);
+
+        //send the email
+        $sending = mail($to, $subject, $msg, $headers);
+
+        //check to see if it has been sent and give a message
+        if($seing){
+            echo "The email sent, we might reply!";
+        }else{
+            echo "This definitely did not send";
+        }
+    }
+?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
