@@ -1,3 +1,63 @@
+
+
+<?php
+//first I want to check if the user clicked the button
+if(isset($_GET['btnSubmit'])){
+
+   $header = "From:" . $_GET['email'];
+
+    $subject = "GASR Customer Support";
+
+    $usermsg = trim($_GET['message']);
+
+switch($_GET['charType']){
+    case 'X':
+        $character = "No Select";
+        break;
+    case 'CH':
+        $character = 'Compost Heap';
+        break;
+    case 'F':
+        $character = 'Felix';
+        break;
+    case 'RP':
+        $character = 'Robo Pig';
+        break;
+    case 'SL':
+        $character = 'Slime Man';
+        break;
+    case "SM":
+        $character = 'Sock Monster';
+        break;
+    default:
+       $character = 'Look at this test';
+
+}
+    switch($_GET['problem']){
+        case 'R1':
+            $problem = 'I played your game too much and my mouse/keyboard broke.';
+            break;
+        case 'R2':
+            $problem = 'I have no significant other.  I need your sexy armours!';
+            break;
+        case 'R3':
+            $problem = 'My account was stolen by hackers.';
+            break;
+        case 'R4':
+            $problem = "I don't have a problem, I'm just lonely and want to talk to someone.";
+            break;
+        default:
+            $problem = 'There was a problem';
+
+    }
+
+
+
+}
+
+?>
+
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -28,7 +88,7 @@
                 <h3>Game Broken?</h3>
                 <h4>...that's too bad.</h4>
             </div>
-            <form name="yourChar" id="yourChar" action="char.php" method="get">
+            <form name="yourChar" id="yourChar" action="<?php echo $_SERVER['PHP_SELF']?>" method="get">
             
             <div id="formleft">
                 <div class="formbox">
@@ -57,13 +117,13 @@
             <div id="formright">                
                 <div class="formbox">
                 	<p>Type of problem:</p>
-                    <input type="radio" class="charField checkbox" id="rad1" name="problem" />
+                    <input type="radio" class="charField checkbox" value="R1" id="rad1" name="problem" />
                     <label for="rad1">I played your game too much and my mouse/keyboard broke.</label>
-                    <input type="radio" class="charField checkbox" id="rad2" name="problem" />
+                    <input type="radio" class="charField checkbox" value="R2" id="rad2" name="problem" />
                 	<label for="rad2">I have no significant other.  I need your sexy armours!</label>
-                    <input type="radio" class="charField checkbox" id="rad3" name="problem" />
+                    <input type="radio" class="charField checkbox" value="R3" id="rad3" name="problem" />
                     <label for="rad3">My account was stolen by hackers.</label>
-                    <input type="radio" class="charField checkbox" id="rad4" name="problem" />
+                    <input type="radio" class="charField checkbox" value="R4" id="rad4" name="problem" />
                     <label for="rad4">I don't have a problem, I'm just lonely and want to talk to someone.</label>
                 </div>
             </div>       
