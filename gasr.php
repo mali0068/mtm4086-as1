@@ -8,7 +8,7 @@ if(isset($_POST['btnSubmit'])){
     $headers .= "Content-Type: text/plain; charset=\"utf-8\" \n";
     //this sets the email type as just plain text
    
-    //get subject & message from input
+    //get the subject & message from input
     $subject = $_POST['problem'];
 	$msg = "Character: " . $_POST['charType'] . "\n";
     $msg .= "Message: " . trim($_POST['message']);
