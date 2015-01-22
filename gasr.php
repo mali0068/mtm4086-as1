@@ -10,6 +10,7 @@ if(isset($_GET['btnSubmit'])){
 
     $usermsg = trim($_GET['message']);
 
+    //get what charater they chose from the drop down menu
 switch($_GET['charType']){
     case 'X':
         $character = "No Select";
@@ -33,6 +34,7 @@ switch($_GET['charType']){
        $character = 'Look at this test';
 
 }
+    //get the problem from the radio button
     switch($_GET['problem']){
         case 'R1':
             $problem = 'I played your game too much and my mouse/keyboard broke.';
@@ -51,7 +53,16 @@ switch($_GET['charType']){
 
     }
 
+    $finalMsg =  $character . " is having the following problem: " . $problem .". Here is what they have to say: ". $usermsg;
+    //echo $finalMsg;
+    //send the message with the subject, who the email is from and the message that contains their problem and
+    $ret = mail('broken@gasr.com', $subject, $finalMsg, $header);
 
+    if($ret){
+        echo "The email was sent! Maybe we'll help you. Maybe not";
+    }else{
+        echo "No email was sent. You got more problems now";
+    }
 
 }
 
