@@ -7,7 +7,7 @@
  
  if(isset($_POST['btnSubmit'])) {
 
-    $userInput = trim($_POST['email']) . trim($_POST['charType'])  . trim($_POST['problem']);
+    $userInput = trim($_POST['email']) . trim($_POST['charType'])  . trim($_POST['problem']) . trim($_POST['message']);
     if( preg_match("/multipart\alternative|content-type:|cc:|bcc:|boundry=)/i", $userInput)){
         //if we find any of these things, just kill the script
         die('Go away jerk.');
