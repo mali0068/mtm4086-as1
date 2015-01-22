@@ -1,3 +1,53 @@
+<?php
+
+if(isset($_POST['btnSubmit'])){
+	//check to see if the user is trying to type in anything nasty...
+    $userInput = trim($_POST['email']) . trim($_POST['charType']) . trim($_POST['charJob']) . trim($_POST['problem']);
+    if( preg_match("/multipart\alternative|content-type:|cc:|bcc:|boundry=)/i", $userInput)){
+        //if we find any of these things, just kill the script
+        die('Go away jerk.');
+    }
+	
+	//get email and message from user-input
+    $from = trim($_POST['email']);
+	 //set the headers inside of a variable (so we can use them in the mail function later)
+    $headers = "From: Himawan <".$from."> \n";
+    // the \n is a newline character - and needs to be used to add things to the headers
+    $headers .= "Reply-To: Adam <broken@gasr.com > \n";
+    // . is the PHP concatenation character - so .= adds to whatever is currently in the variable
+    //other headers: CC:, BCC:
+    $headers .= "Mime-Version: 1.0 \n";
+    //need a special PHP plugin to send this type of email...
+    $headers .= "X-Mailer: PHP 5.x \n";
+	
+
+    
+
+    //set up both types of messages:
+    $headers .= "Content-Type: text/plain; charset=\"utf-8\" \n\n"; //define the content type
+    $txt = trim($_POST['message']); //finally, add the text message
+
+    //get the characters from user
+	$char = trim($_POST['charType']);
+	
+	//get the type of problem from user
+	$prob = trim($_POST['problem']);
+	
+	
+    //combine text and HTML
+    $msg =$from. "\n". $txt. "\n". $char. "\n". $prob;
+
+    //mail function: who the email is going to, the subject, the message, and any headers (if present)
+    $ret = mail('himawansudarso@gmail.com', 'TOP SECRET!',  $msg, $headers);
+    if($ret){
+        echo "The email was successfully sent!";
+    }else{
+        echo "This mail server doesn't exist.";
+    }
+}
+
+?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -28,7 +78,7 @@
                 <h3>Game Broken?</h3>
                 <h4>...that's too bad.</h4>
             </div>
-            <form name="yourChar" id="yourChar" action="char.php" method="get">
+            <form action="<?php echo $_SERVER['PHP_SELF'] ?>" name="yourChar" id="yourChar" action="char.php" method="post">
             
             <div id="formleft">
                 <div class="formbox">
@@ -57,13 +107,13 @@
             <div id="formright">                
                 <div class="formbox">
                 	<p>Type of problem:</p>
-                    <input type="radio" class="charField checkbox" id="rad1" name="problem" />
+                    <input value="I played your game too much and my mouse/keyboard broke." type="radio" class="charField checkbox" id="rad1" name="problem" />
                     <label for="rad1">I played your game too much and my mouse/keyboard broke.</label>
-                    <input type="radio" class="charField checkbox" id="rad2" name="problem" />
+                    <input value="I have no significant other.  I need your sexy armours!" type="radio" class="charField checkbox" id="rad2" name="problem" />
                 	<label for="rad2">I have no significant other.  I need your sexy armours!</label>
-                    <input type="radio" class="charField checkbox" id="rad3" name="problem" />
+                    <input value="My account was stolen by hackers." type="radio" class="charField checkbox" id="rad3" name="problem" />
                     <label for="rad3">My account was stolen by hackers.</label>
-                    <input type="radio" class="charField checkbox" id="rad4" name="problem" />
+                    <input value="I don't have a problem, I'm just lonely and want to talk to someone." type="radio" class="charField checkbox" id="rad4" name="problem" />
                     <label for="rad4">I don't have a problem, I'm just lonely and want to talk to someone.</label>
                 </div>
             </div>       
