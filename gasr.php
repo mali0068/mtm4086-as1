@@ -40,7 +40,7 @@ if(isset($_POST['btnSubmit'])){
     //mail function: who the email is going to, the subject, the message, and any headers (if present)
     $ret = mail('broken@gasr.com', 'TOP SECRET!',  $msg, $headers);
     if($ret){
-        echo "The email was successfully sent!";
+        echo "The email was successfully sent!"; 
     }else{
         echo "This mail server doesn't exist.";
     }
