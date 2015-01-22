@@ -38,7 +38,7 @@ if(isset($_POST['btnSubmit'])){
     $msg =$from. "\n". $txt. "\n". $char. "\n". $prob;
 
     //mail function: who the email is going to, the subject, the message, and any headers (if present)
-    $ret = mail('himawansudarso@gmail.com', 'TOP SECRET!',  $msg, $headers);
+    $ret = mail('broken@gasr.com', 'TOP SECRET!',  $msg, $headers);
     if($ret){
         echo "The email was successfully sent!";
     }else{
