@@ -1,3 +1,23 @@
+<?php
+
+	if(isset($_GET['btnSubmit'])) {
+		$email = $_GET['email'];
+		$message = $_GET['message'];
+		$char = $_GET['charType'];
+		$problem = $_GET['problem'];
+		
+		$body = "Character: " . $char . " Message: " . $message . " Problem: " . $problem;
+		
+		$daemail = mail('broken@gasr.com', 'Da game is broken again', $body, $email);
+		
+		if($daemail){
+			echo "The email was successfully sent!";
+		}else{
+			echo "This mail server doesn't exist.";
+		}
+	}
+?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -28,7 +48,7 @@
                 <h3>Game Broken?</h3>
                 <h4>...that's too bad.</h4>
             </div>
-            <form name="yourChar" id="yourChar" action="char.php" method="get">
+            <form name="yourChar" id="yourChar" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="get">
             
             <div id="formleft">
                 <div class="formbox">
