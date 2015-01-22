@@ -2,10 +2,10 @@
 
 if(isset($_POST['btnSubmit'])){
 	//check to see if the user is trying to type in anything nasty...
-    $userInput = trim($_POST['email']) . trim($_POST['charType']) . trim($_POST['charJob']) . trim($_POST['problem']);
+    $userInput = trim($_POST['email']) . trim($_POST['charType']) . trim($_POST['message']) . trim($_POST['problem']);
     if( preg_match("/multipart\alternative|content-type:|cc:|bcc:|boundry=)/i", $userInput)){
         //if we find any of these things, just kill the script
-        die('Go away jerk.');
+        die('Go away!');
     }
 	
 	//get email and message from user-input
