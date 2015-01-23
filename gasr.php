@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>GASR</title>
+<title>GASR!!</title>
 <link href="styles/styles.css" rel="stylesheet" />
 </head>
 
