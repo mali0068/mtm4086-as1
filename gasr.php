@@ -87,11 +87,11 @@ if(isset($_POST['btnSubmit'])){
                     <label for"charType">Your Character:</label>
                     <select id="charType" name="charType" class="charField">
                     	<option value="X">Select your character...</option>
-                        <option value="CH">Compost Heap</option>
-                        <option value="F">Felix</option>
-                        <option value="RP">Robo-Pig</option>
-                        <option value="SL">Slime Man</option>
-                        <option value="SM">Sock Monster</option>
+                        <option value="Compost Heap">Compost Heap</option>
+                        <option value="Felix">Felix</option>
+                        <option value="Robo-Pig">Robo-Pig</option>
+                        <option value="Slime Man">Slime Man</option>
+                        <option value="Sock Monster">Sock Monster</option>
                     </select>            
                 </div>
                 
