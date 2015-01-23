@@ -1,21 +1,22 @@
 <?php
 
-
 if(isset($_POST['btnSubmit'])){
 	//the users email
 	$email = trim($_POST['email']);
 
+	
     $headers = "From: thatdamnform@gasr.com \n";
     $headers .= "Reply-To: " . $email . "\n";
 	$headers .= "Content-Type: text/plain; charset=\"utf-8\" \n";
 	
 	//The problem they selected
-	$problem = "Another user has a problem..." . trim($_POST['problem']) . "\n";
+	$problem = $_POST['problem'];
+	
 	$body = "This is their character: " . $_POST['charType'] . "\n";
 	$body .= "This is what they are complaining about: " . trim($_POST['message']);
 	
 	
-    $mail = mail('jalaynag@gmail.com', $problem, $body, $headers);
+    $mail = mail('broken@gasr.com', $problem, $body, $headers);
     if($mail){
         echo "Woohoo! Your email was sent!";
     }else{
@@ -55,7 +56,7 @@ if(isset($_POST['btnSubmit'])){
                 <h3>Game Broken?</h3>
                 <h4>...that's too bad.</h4>
             </div>
-            <form name="yourChar" id="yourChar" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="get">
+            <form name="yourChar" id="yourChar" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
             
             <div id="formleft">
                 <div class="formbox">
@@ -67,11 +68,11 @@ if(isset($_POST['btnSubmit'])){
                     <label for"charType">Your Character:</label>
                     <select id="charType" name="charType" class="charField">
                     	<option value="X">Select your character...</option>
-                        <option value="CH">Compost Heap</option>
-                        <option value="F">Felix</option>
-                        <option value="RP">Robo-Pig</option>
-                        <option value="SL">Slime Man</option>
-                        <option value="SM">Sock Monster</option>
+                        <option value="Compost Heap">Compost Heap</option>
+                        <option value="Felix">Felix</option>
+                        <option value="Robo-Pig">Robo-Pig</option>
+                        <option value="Slime Man">Slime Man</option>
+                        <option value="Sock Monster">Sock Monster</option>
                     </select>            
                 </div>
                 
@@ -84,13 +85,13 @@ if(isset($_POST['btnSubmit'])){
             <div id="formright">                
                 <div class="formbox">
                 	<p>Type of problem:</p>
-                    <input type="radio" class="charField checkbox" id="rad1" name="problem" />
+                    <input type="radio" class="charField checkbox" id="rad1" name="problem" value="I played your game too much and my mouse/keyboard broke."/>
                     <label for="rad1">I played your game too much and my mouse/keyboard broke.</label>
-                    <input type="radio" class="charField checkbox" id="rad2" name="problem" />
+                    <input type="radio" class="charField checkbox" id="rad2" name="problem" value="I have no significant other.  I need your sexy armours!"/>
                 	<label for="rad2">I have no significant other.  I need your sexy armours!</label>
-                    <input type="radio" class="charField checkbox" id="rad3" name="problem" />
+                    <input type="radio" class="charField checkbox" id="rad3" name="problem" value="My account was stolen by hackers."/>
                     <label for="rad3">My account was stolen by hackers.</label>
-                    <input type="radio" class="charField checkbox" id="rad4" name="problem" />
+                    <input type="radio" class="charField checkbox" id="rad4" name="problem" value="I don't have a problem, I'm just lonely and want to talk to someone."/>
                     <label for="rad4">I don't have a problem, I'm just lonely and want to talk to someone.</label>
                 </div>
             </div>
