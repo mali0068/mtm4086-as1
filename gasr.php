@@ -1,3 +1,4 @@
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -7,6 +8,60 @@
 </head>
 
 <body>
+
+<?php
+ 
+ if(isset($_POST['btnSubmit'])) {
+    
+    $userInput = trim($_POST['email']) . trim($_POST['charType'])  . trim($_POST['problem']) . trim($_POST['message']);
+   
+    if ( preg_match("/multipart\alternative|content-type:|cc:|bcc:|boundry=)/i", $userInput)) {
+        
+         die('Not today');
+
+    }
+
+    //Character type
+
+    $formChar = trim($_POST['charType']);
+
+    //user email
+
+    $formEmail = trim($_POST['email']);
+
+    //problem
+
+    $problem = $_POST['problem'];
+
+
+    //setting up headers
+   
+    $headers = "From: Tolu <".  $formEmail ."> \n";
+  
+    $headers .="Content-Type: text/plain; charset=\"utf-8\" \n";
+    
+   
+    $charTypeMsg = "Character: " .$formChar. "\n\n";
+
+    $problemMsg = "Type of problem: \n" .$problem ."\n\n";
+
+    $msgBox = "Message: \n" . trim($_POST['message']);
+   
+    $msg = $charTypeMsg . $problemMsg . $msgBox;
+    
+   
+    
+   $sendMail = mail('broken@gasr.com', 'Broken Game' , $msg , $headers);
+   
+   if($sendMail) {
+        
+        echo 'Yes';
+    }else {
+       echo 'No';
+    }
+ } 
+?>
+
 
     <div id="wrapper">
         <div id="header">
@@ -28,7 +83,7 @@
                 <h3>Game Broken?</h3>
                 <h4>...that's too bad.</h4>
             </div>
-            <form name="yourChar" id="yourChar" action="char.php" method="get">
+            <form name="yourChar" id="yourChar" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
             
             <div id="formleft">
                 <div class="formbox">
