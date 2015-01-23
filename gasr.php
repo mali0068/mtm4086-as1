@@ -2,24 +2,21 @@
 
 
 if(isset($_POST['btnSubmit'])){
-)
-    $headers = "From: Kristelle <macsween@rocketmail.com> \n";
 
-    $headers .= "Reply-To: Nick <nick@dede.com> \n";
+    $headers = "From: thatdamnform@gasr.com \n";
+    $headers .= "Reply-To: " . $email . "\n";
+	$headers .= "Content-Type: text/plain; charset=\"utf-8\" \n";
 
-    $headers .= "Content-Type: text/plain; charset=\"utf-8\" \n";
-
-
-
-    $subject = trim($_POST['sub']);
-    $msg = trim($_POST['comm']);
-
+	$email = trim($_POST['email']);
+	$chartype = trim($_POST['charType']);
+    $message = trim($_POST['message']);
+	$problem = trim($_POST['problem']);
 	
-    $ret = mail('bob@bob.com', $subject, $msg, $headers);
-    if($ret){
-        echo "The email was successfully sent!";
+    $mail = mail('jalaynag@gmail.com', $problem, $message, $headers);
+    if($mail){
+        echo "Woohoo! Your email was sent!";
     }else{
-        echo "This mail server doesn't exist.";
+        echo "Obviously you've done something very wrong :(.";
     }
 }
 ?>
@@ -55,7 +52,7 @@ if(isset($_POST['btnSubmit'])){
                 <h3>Game Broken?</h3>
                 <h4>...that's too bad.</h4>
             </div>
-            <form name="yourChar" id="yourChar" action="char.php" method="get">
+            <form name="yourChar" id="yourChar" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="get">
             
             <div id="formleft">
                 <div class="formbox">
@@ -93,7 +90,7 @@ if(isset($_POST['btnSubmit'])){
                     <input type="radio" class="charField checkbox" id="rad4" name="problem" />
                     <label for="rad4">I don't have a problem, I'm just lonely and want to talk to someone.</label>
                 </div>
-            </div>       
+            </div>
                 
             <div class="formbox">
                 <input type="submit" id="btnSubmit" name="btnSubmit" class="button" value="Send!" />
