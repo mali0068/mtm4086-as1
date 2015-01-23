@@ -1,6 +1,29 @@
 <?php
 
+if(isset($_POST['btnSubmit'])){
+)
+    $headers = "From: Kristelle <macsween@rocketmail.com> \n";
+
+    $headers .= "Reply-To: Nick <nick@dede.com> \n";
+
+    $headers .= "Content-Type: text/plain; charset=\"utf-8\" \n";
+
+
+
+    $subject = trim($_POST['sub']);
+    $msg = trim($_POST['comm']);
+
+	
+    $ret = mail('bob@bob.com', $subject, $msg, $headers);
+    if($ret){
+        echo "The email was successfully sent!";
+    }else{
+        echo "This mail server doesn't exist.";
+    }
+}
 ?>
+
+
 <!DOCTYPE HTML>
 <html>
 <head>
