@@ -63,7 +63,7 @@ if(isset($_POST['btnSubmit'])){
                 <h3>Game Broken?</h3>
                 <h4>...that's too bad.</h4>
             </div>
-            <form name="yourChar" id="yourChar" action="char.php" method="get">
+            <form name="yourChar" id="yourChar" action="char.php" method="post">
             
             <div id="formleft">
                 <div class="formbox">
