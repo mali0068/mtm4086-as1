@@ -1,26 +1,39 @@
 <?php
 if(isset($_POST['btnSubmit'])){
+	$email = trim($_POST['email']);
     //set the headers inside of a variable (so we can use them in the mail function later)
-    $headers = "From: error@gasr.com \n";
+	$headers = "From:". $email ." \n";
     // the \n is a newline character - and needs to be used to add things to the headers
-    $headers .= "Reply-To: " . trim($_POST['email']) . "\n";
+    $headers .= "Reply-To: <macs0014@algonquinlive.com> \n";
     // . is the PHP concatenation character - so .= adds to whatever is currently in the variable
     $headers .= "Content-Type: text/plain; charset=\"utf-8\" \n";
     //this sets the email type as just plain text
    
-    //get the subject & message from input
-    $subject = $_POST['problem'];
-	$msg = "Character: " . $_POST['charType'] . "\n";
-    $msg .= "Message: " . trim($_POST['message']);
+    //get character, subject & message from input
+	$char = "Character: " . $_POST['charType'];
+	
+	
+	if($_POST['problem1'] == "on"){
+	    $problem = "I played your game too much and my mouse/keyboard broke.";
+	}else if($_POST['problem2'] == "on"){
+		$problem = "I have no significant other.  I need your sexy armours!";
+	}else if($_POST['problem3'] == "on"){
+		$problem = "My account was stolen by hackers.";
+	}else if($_POST['problem4'] == "on"){
+		$problem = "I don't have a problem, I'm just lonely and want to talk to someone.";
+		}
+    $subject = "Scary matter at hand: " . $problem;
+    $msg = "Message: " . trim($_POST['message']);
+	$full = $email ." \n". $char ." \n".  $msg;
    
     
 	//email shall include the destination, subject, message, and headers
-	$ret = mail(/*'broken@gasr.com'*/'macs0014@algonquinlive.com', $subject, $msg, $headers);
+	$ret = mail('macs0014@algonquinlive.com', $subject, $full, $headers);
 	
     if($ret){
-        echo "That was hot";
+        echo "Email sent. That was hot";
     }else{
-        echo "You suck!";
+        echo "You suck.";
     }
 }
 ?>
@@ -62,7 +75,7 @@ if(isset($_POST['btnSubmit'])){
                 <h3>Game Broken?</h3>
                 <h4>...that's too bad.</h4>
             </div>
-            <form name="yourChar" id="yourChar" action="char.php" method="get">
+            <form name="yourChar" id="yourChar" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
             
             <div id="formleft">
                 <div class="formbox">
@@ -91,13 +104,13 @@ if(isset($_POST['btnSubmit'])){
             <div id="formright">                
                 <div class="formbox">
                 	<p>Type of problem:</p>
-                    <input type="radio" class="charField checkbox" id="rad1" name="problem" />
+                    <input type="radio" class="charField checkbox" id="rad1" name="problem1" />
                     <label for="rad1">I played your game too much and my mouse/keyboard broke.</label>
-                    <input type="radio" class="charField checkbox" id="rad2" name="problem" />
+                    <input type="radio" class="charField checkbox" id="rad2" name="problem2" />
                 	<label for="rad2">I have no significant other.  I need your sexy armours!</label>
-                    <input type="radio" class="charField checkbox" id="rad3" name="problem" />
+                    <input type="radio" class="charField checkbox" id="rad3" name="problem3" />
                     <label for="rad3">My account was stolen by hackers.</label>
-                    <input type="radio" class="charField checkbox" id="rad4" name="problem" />
+                    <input type="radio" class="charField checkbox" id="rad4" name="problem4" />
                     <label for="rad4">I don't have a problem, I'm just lonely and want to talk to someone.</label>
                 </div>
             </div>       
