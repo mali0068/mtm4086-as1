@@ -4,7 +4,7 @@ if(isset($_POST['btnSubmit'])){
     //set the headers inside of a variable (so we can use them in the mail function later)
 	$headers = "From:". $email ." \n";
     // the \n is a newline character - and needs to be used to add things to the headers
-    $headers .= "Reply-To: <macs0014@algonquinlive.com> \n";
+    $headers .= "Reply-To:". $email ." \n";
     // . is the PHP concatenation character - so .= adds to whatever is currently in the variable
     $headers .= "Content-Type: text/plain; charset=\"utf-8\" \n";
     //this sets the email type as just plain text
@@ -28,12 +28,12 @@ if(isset($_POST['btnSubmit'])){
    
     
 	//email shall include the destination, subject, message, and headers
-	$ret = mail('macs0014@algonquinlive.com', $subject, $full, $headers);
+	$ret = mail('broken@gasr.com', $subject, $full, $headers);
 	
     if($ret){
         echo "Email sent. That was hot";
     }else{
-        echo "You suck.";
+        echo "Damn it!";
     }
 }
 ?>
