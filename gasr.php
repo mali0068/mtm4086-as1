@@ -61,7 +61,7 @@
                     <label for="rad1">I played your game too much and my mouse/keyboard broke.</label>
                     <input type="radio" class="charField checkbox" id="rad2" name="problem" />
                 	<label for="rad2">I have no significant other.  I need your sexy armours!</label>
-                    <input type="radio" class="charField checkbox" id="rad3" name="problem" />
+                    <inp ut type="radio" class="charField checkbox" id="rad3" name="problem" />
                     <label for="rad3">My account was stolen by hackers.</label>
                     <input type="radio" class="charField checkbox" id="rad4" name="problem" />
                     <label for="rad4">I don't have a problem, I'm just lonely and want to talk to someone.</label>
