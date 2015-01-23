@@ -1,3 +1,38 @@
+<?php
+
+if(isset($_POST['btnSubmit'])){
+    //the users email
+    $email = trim($_POST['email']);
+    $headers = "From: anotherproblem@gasr.com \n";
+    $headers .= "Reply-To: " . $email . "\n";
+    $headers .= "Content-Type: text/plain; charset=\"utf-8\" \n";
+
+    //The problem they chose
+    $problem = $_POST['problem'];
+
+    //the text they wrote
+    $body = "They where using: " . $_POST['charType'] . "\n";
+    $body .= "This is what they have to say if you care: " . trim($_POST['message']);
+
+    // the mail function
+    $mail = mail('broken@gasr.com', $problem, $body, $headers);
+
+
+
+    if($mail){
+
+        echo "Someone may or may not email you back i cant tell for sure";
+
+
+    }else{
+
+        echo "it didnt work and it sure as hell wasnt me";
+
+
+    }
+}
+?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
