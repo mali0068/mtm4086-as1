@@ -2,17 +2,20 @@
 
 
 if(isset($_POST['btnSubmit'])){
+	//the users email
+	$email = trim($_POST['email']);
 
     $headers = "From: thatdamnform@gasr.com \n";
     $headers .= "Reply-To: " . $email . "\n";
 	$headers .= "Content-Type: text/plain; charset=\"utf-8\" \n";
-
-	$email = trim($_POST['email']);
-	$chartype = trim($_POST['charType']);
-    $message = trim($_POST['message']);
-	$problem = trim($_POST['problem']);
 	
-    $mail = mail('jalaynag@gmail.com', $problem, $message, $headers);
+	//The problem they selected
+	$problem = "Another user has a problem..." . trim($_POST['problem']) . "\n";
+	$body = "This is their character: " . $_POST['charType'] . "\n";
+	$body .= "This is what they are complaining about: " . trim($_POST['message']);
+	
+	
+    $mail = mail('jalaynag@gmail.com', $problem, $body, $headers);
     if($mail){
         echo "Woohoo! Your email was sent!";
     }else{
