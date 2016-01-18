@@ -6,7 +6,7 @@ First, you should have by now cloned the repository locally onto your own machin
 
 Create a branch called "lastname_firstname" to make changes into.
 
-Edit the php file so it actually sends an email to broken@gasr.com (no, it's not a real email), including all the information the user types into the form.
+Edit the php file so it actually sends an email to elliotc1@algonquincollege.com, including all the information the user types into the form.
 
 Just a plain text email is fine, but it should contain the user's email as the 'from', and the comments and problem and character in the email body.
 
