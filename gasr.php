@@ -32,12 +32,12 @@
             
             <div id="formleft">
                 <div class="formbox">
-                    <label for"email">Your E-mail:</label>
+                    <label for="email">Your E-mail:</label>
                     <input type="text" id="email" class="charField" name="email" />
                 </div>
                 
                 <div class="formbox">
-                    <label for"charType">Your Character:</label>
+                    <label for="charType">Your Character:</label>
                     <select id="charType" name="charType" class="charField">
                     	<option value="X">Select your character...</option>
                         <option value="CH">Compost Heap</option>
@@ -49,7 +49,7 @@
                 </div>
                 
                 <div class="formbox">
-                    <label for"charJob">Message:</label>
+                    <label for="charJob">Message:</label>
                     <textarea name="message" id="message" class="charField"></textarea>
                 </div>
             </div>
