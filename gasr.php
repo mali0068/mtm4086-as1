@@ -1,3 +1,4 @@
+<?php include("handle-gasr.php") ?>
 <!DOCTYPE HTML>
 <html>
 <head>
