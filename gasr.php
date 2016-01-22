@@ -1,14 +1,57 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>GASR</title>
-<link href="styles/styles.css" rel="stylesheet" />
-</head>
+<?php
 
-<body>
-
-    <div id="wrapper">
+if(isset($_POST['btnSubmit'])){
+    email = $POST['email'];
+	//the button was clicked so send the email...
+	$headers = "From: Chris <osukaakuoma@yahoo.com> \n";
+	//the email address goes inside the angle brackets
+	//anything in front of that will be the display name
+	$headers .= "Reply-To: Chris <elliotc1@algonquincollege.com> \n";
+	$headers .= "Content-Type: text/plain; charset=\"utf-8\" \n";
+	
+	$subject = "Hello Chris: " . trim($_POST['subject']);
+    
+    $text =$POST['message'];
+    $emailto = "osukaakuoma@yahoo.com";
+	$comments = trim($_POST['comments']);
+	
+	//$msg = "This is the message in the email.";
+      //character
+    if ($_POST['charType']=="CH") { 
+        $cha = "Character: Compost Heap"; 
+    }else if ($_POST['charType']=="F") { 
+        $cha  = "Character: Felix";
+    }else if ($_POST['charType']=="RP") { 
+        $cha  = "Character: Robo-Pig";
+    }else if ($_POST['charType']=="SL") { 
+        $cha  = "Character: Slime Monster";
+    }else if ($_POST['charType']=="SM") { 
+        $cha  = "Character: Sock Monster";
+    }else{
+        echo "No character chosen."; }
+    
+    //type of problem
+    if($_POST['problem']=="rad1"){
+        $chaprob = "I played your game too much and my mouse/keyboard broke.";
+    }else if($_POST['problem']=="rad2"){
+        $chaprob = "I have no significant other.  I need your sexy armours!";
+    }else if($_POST['problem']=="rad3"){
+        $chaprob = "My account was stolen by hackers.";
+    }else if($_POST['problem']=="rad4"){
+        $chaprob = "I don't have a problem, I'm just lonely and want to talk to someone.";
+    }else {
+        echo "No problem chosen.";   
+    }
+	
+	$ret = mail('osukaakuoma@yahoo.com', . "Email:" . " " . $email . "<br>" . $subject, $cha, . "<br>" . "Character Problem:" . $chaprob, . "<br> Comments: <br> . $comments, $headers);
+	if($ret){
+		echo 'The email was successfully sent.';
+	}else{
+		echo 'The mail server did not like you.';
+	}
+}
+?>
+ <div id="wrapper">
         <div id="header">
             <div class="awe" id="awesome1">
                 <p>Lightning!</p>
@@ -28,7 +71,7 @@
                 <h3>Game Broken?</h3>
                 <h4>...that's too bad.</h4>
             </div>
-            <form name="yourChar" id="yourChar" action="char.php" method="get">
+            <form name="yourChar" id="yourChar" action="<?=$_SERVER['PHP_SELF']?>" method="post">
             
             <div id="formleft">
                 <div class="formbox">
@@ -57,13 +100,13 @@
             <div id="formright">                
                 <div class="formbox">
                 	<p>Type of problem:</p>
-                    <input type="radio" class="charField checkbox" id="rad1" name="problem" />
+                    <input type="radio" class="charField checkbox" id="rad1" value="rad1" name="problem" />
                     <label for="rad1">I played your game too much and my mouse/keyboard broke.</label>
-                    <input type="radio" class="charField checkbox" id="rad2" name="problem" />
+                    <input type="radio" class="charField checkbox" id="rad2" value="rad2" name="problem" />
                 	<label for="rad2">I have no significant other.  I need your sexy armours!</label>
-                    <input type="radio" class="charField checkbox" id="rad3" name="problem" />
+                    <input type="radio" class="charField checkbox" id="rad3" value="rad3" name="problem" />
                     <label for="rad3">My account was stolen by hackers.</label>
-                    <input type="radio" class="charField checkbox" id="rad4" name="problem" />
+                    <input type="radio" class="charField checkbox" id="rad4" value="rad4"  name="problem" />
                     <label for="rad4">I don't have a problem, I'm just lonely and want to talk to someone.</label>
                 </div>
             </div>       
