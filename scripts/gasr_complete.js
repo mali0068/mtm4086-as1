@@ -3,7 +3,7 @@
 window.onload = superawesome;
 
 //this is in several parts...the idea here is to validate everything both onblur/onchange/onclick, and then also make it work when the user clicks the submit button.  this should provide a pretty comprehensive example for them to follow for their final!
-
+ 
 var theForm;
 
 function superawesome(){

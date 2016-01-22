@@ -5,7 +5,7 @@ function trim( theString ){
 	while( theString.length> 0 && (theString.substr(0, 1) == " " || theString.substr(0,1) == "\t" || theString.substr(0,1) == "\r" || theString.substr(0,1) == "\n") ){
 		theString = theString.substr(1);
 		//the string is now equal to itself starting from the second character to the end.
-	}
+	} 
 	
 	//clear the trailing spaces
 	while( theString.length> 0 && (theString.substr(theString.length-1, 1) == " " || theString.substr(theString.length-1,1) == "\t" || theString.substr(theString.length-1,1) == "\r" || theString.substr(theString.length-1,1) == "\n") ){
