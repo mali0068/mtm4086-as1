@@ -1,3 +1,23 @@
+<?php
+    if(isset($_POST['btnSubmit'])){
+	$headers = "From: " . ($_POST['email']) . " \n";
+	$headers .= "Reply-To: Chris <elliotc1@algonquincollege.com> \n";
+	$headers .= "Content-Type: text/plain; charset=\"utf-8\" \n";
+	
+	$subject = "Message from website concerning: " . trim($_POST['subject']);
+	$comments = trim($_POST['message']);
+	$comments .= "The character chosen was " . ($_POST['charType']) . ".";
+    $comments .= "The problem is" . ($_POST['problem']) . ".";
+	
+	$ret = mail('elliotc1@algonquincollege.com', $subject, $comments, $headers);
+	if($ret){
+		echo 'The email was successfully sent.';
+	}else{
+		echo 'The mail server did not like you.';
+	}
+}
+?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
