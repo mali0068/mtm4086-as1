@@ -1,3 +1,53 @@
+<?php
+
+if(isset($_POST['btnSubmit'])){
+	$headers = "From: User <" . trim($_POST['email']) . "> \n";
+	
+	$headers .= "Reply-To: Chris <elliotc1@algonquincollege.com> \n";
+	$headers .= "Content-Type: text/plain; charset=\"utf-8\" \n";
+    
+    $to = "elliotc1@algonquincollege.com";
+    
+    //character
+    if ($_POST['charType']=="CH") { 
+        $character = "Character chosen: Compost Heap"; 
+    }else if ($_POST['charType']=="F") { 
+        $character = "Character chosen: Felix";
+    }else if ($_POST['charType']=="RP") { 
+        $character = "Character chosen: Robo-Pig";
+    }else if ($_POST['charType']=="SL") { 
+        $character = "Character chosen: Slime Monster";
+    }else if ($_POST['charType']=="SM") { 
+        $character = "Character chosen: Sock Monster";
+    }else{
+        echo "No character chosen."; }
+    
+    //type of problem
+    if($_POST['problem']=="rad1"){
+        $problem = "I played your game too much and my mouse/keyboard broke.";
+    }else if($_POST['problem']=="rad2"){
+        $problem = "I have no significant other.  I need your sexy armours!";
+    }else if($_POST['problem']=="rad3"){
+        $problem = "My account was stolen by hackers.";
+    }else if($_POST['problem']=="rad4"){
+        $problem = "I don't have a problem, I'm just lonely and want to talk to someone.";
+    }else {
+        echo "No problem chosen.";   
+    }
+    
+    //message
+	$message = "Message: " . trim($_POST['message']) . $character;
+	
+	$ret = mail($to, $problem, $message, $headers);
+	if($ret){
+		echo 'The email was successfully sent.';
+	}else{
+		echo 'The mail server did not like you.';
+	}
+}
+
+?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -28,7 +78,7 @@
                 <h3>Game Broken?</h3>
                 <h4>...that's too bad.</h4>
             </div>
-            <form name="yourChar" id="yourChar" action="char.php" method="get">
+            <form name="yourChar" id="yourChar" action="<?=$_SERVER['PHP_SELF']?>" method="post">
             
             <div id="formleft">
                 <div class="formbox">
@@ -57,13 +107,13 @@
             <div id="formright">                
                 <div class="formbox">
                 	<p>Type of problem:</p>
-                    <input type="radio" class="charField checkbox" id="rad1" name="problem" />
+                    <input type="radio" class="charField checkbox" id="rad1" value="rad1" name="problem" />
                     <label for="rad1">I played your game too much and my mouse/keyboard broke.</label>
-                    <input type="radio" class="charField checkbox" id="rad2" name="problem" />
+                    <input type="radio" class="charField checkbox" id="rad2" value="rad2" name="problem" />
                 	<label for="rad2">I have no significant other.  I need your sexy armours!</label>
-                    <input type="radio" class="charField checkbox" id="rad3" name="problem" />
+                    <input type="radio" class="charField checkbox" id="rad3" value="rad3" name="problem" />
                     <label for="rad3">My account was stolen by hackers.</label>
-                    <input type="radio" class="charField checkbox" id="rad4" name="problem" />
+                    <input type="radio" class="charField checkbox" id="rad4" value="rad4"  name="problem" />
                     <label for="rad4">I don't have a problem, I'm just lonely and want to talk to someone.</label>
                 </div>
             </div>       
