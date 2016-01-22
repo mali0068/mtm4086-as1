@@ -1,6 +1,6 @@
 <?php
 /***********************************************
-Version 2
+Version 2aasdfasdfa
 - Uses the basic mail() function to send an email
 - Uses the headers parameter of the mail() function to
 	set the From, Reply-To, and Content-Type
