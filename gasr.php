@@ -1,3 +1,23 @@
+<?php
+if(isset($_POST['btnSend'])){
+
+	$headers = "From: ". trim($_POST['email']) . "\n";
+
+	$subject = "Message from website concerning:"
+ 
+	
+	$msg = trim($_POST['message']) . "\n";
+    $msg .= "Char Type:" . trim($_POST['chartype']) . "\n"; 
+    $msg .= "Problem:" . trim($_POST['problem']);
+	
+	$ret = mail('elliotc1@algonquincollege.com', $subject, $msg, $headers);
+	if($ret){
+		echo 'The email was successfully sent.';
+	}else{
+		echo 'The mail server did not like you.';
+	}
+}
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
