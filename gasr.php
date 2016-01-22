@@ -1,14 +1,14 @@
 <?php
 
-if(isset($_POST['btnSend'])){
+if(isset($_POST['btnSubmit'])){
 	//the button was clicked so send the email...
-	$headers = "From: Chris <". $_POST['email'] . "> \n";
+	$headers = "From: <". $_POST['email'] . "> \n";
 	//the email address goes inside the angle brackets
 	//anything in front of that will be the display name
-	$headers .= "Reply-To: Chris <elliotc1@algonquincollege.com> \n";
+	$headers .= "Reply-To: <". $_POST['email'] . "> \n";
 	$headers .= "Content-Type: text/plain; charset=\"utf-8\" \n";
 	
-	$subject = "Message from website concerning: " . trim($_POST['subject']);
+	$subject = "Message from website concerning" ;
 	
     if($_POST['charType']== "CH"){
     $message = "Compost Heap";
@@ -17,11 +17,36 @@ if(isset($_POST['btnSend'])){
     }else if($_POST['charType']== "F"){
     $message = "Felix";
     
+    }else if($_POST['charType']== "RP"){
+    $message = "Robo-Pig";
+    
+    }else if($_POST['charType']== "SL"){
+    $message = "Slime-Man";
+    
+    }else if($_POST['charType']== "SM"){
+     $message = "Sock-Monster";
     
     }
     
-    $comments = trim($_POST['comments']);
-	
+     if($_POST['problem']== "rad1"){
+    $prb = "I played your game too much and my mouse/keyboard broke.";
+    
+    }else if($_POST['problem']== "rad2"){
+    $prb = "I have no significant other.  I need your sexy armours!";
+    
+    }else if($_POST['problem']== "rad3"){
+    $prb = "My account was stolen by hackers.";
+    
+    }else if($_POST['problem']== "rad4"){
+    $prb = "I don't have a problem, I'm just lonely and want to talk to someone.";
+    
+    }
+    $comments = $message . "\n";
+       
+    $comments .= trim($_POST['message']) . "\n";
+    
+    $comments  .= $prb;
+	    echo $comments;
 	//$msg = "This is the message in the email.";
 	
 	$ret = mail('elliotc1@algonquincollege.com', $subject, $comments, $headers);
@@ -62,7 +87,7 @@ if(isset($_POST['btnSend'])){
                 <h3>Game Broken?</h3>
                 <h4>...that's too bad.</h4>
             </div>
-            <form name="yourChar" id="yourChar" action="char.php" method="POST">
+            <form name="yourChar" id="yourChar" action="gasr.php" method="POST">
             
             <div id="formleft">
                 <div class="formbox">
@@ -91,13 +116,13 @@ if(isset($_POST['btnSend'])){
             <div id="formright">                
                 <div class="formbox">
                 	<p>Type of problem:</p>
-                    <input type="radio" class="charField checkbox" id="rad1" name="problem" />
+                    <input type="radio" class="charField checkbox" id="rad1" name="problem" value="rad1"/>
                     <label for="rad1">I played your game too much and my mouse/keyboard broke.</label>
-                    <input type="radio" class="charField checkbox" id="rad2" name="problem" />
+                    <input type="radio" class="charField checkbox" id="rad2" name="problem" value="rad2" />
                 	<label for="rad2">I have no significant other.  I need your sexy armours!</label>
-                    <input type="radio" class="charField checkbox" id="rad3" name="problem" />
+                    <input type="radio" class="charField checkbox" id="rad3" name="problem" value="rad3" />
                     <label for="rad3">My account was stolen by hackers.</label>
-                    <input type="radio" class="charField checkbox" id="rad4" name="problem" />
+                    <input type="radio" class="charField checkbox" id="rad4" name="problem" value="rad4"/>
                     <label for="rad4">I don't have a problem, I'm just lonely and want to talk to someone.</label>
                 </div>
             </div>       
