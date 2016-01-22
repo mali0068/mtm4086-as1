@@ -5,7 +5,7 @@ window.onload = superawesome;
 //this is in several parts...this first example is working just onclick/onchange/onblur, but the submit button does nothing.  start with this one!
 
 var theForm;
-
+ 
 function superawesome(){
 	//onclick for the button!  (not an input submit, but just the button element)
 	document.querySelector("#btnSubmit").onclick = processForm;
