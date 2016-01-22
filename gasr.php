@@ -7,7 +7,6 @@
 </head>
 
 <body>
-
     <div id="wrapper">
         <div id="header">
             <div class="awe" id="awesome1">
@@ -28,7 +27,7 @@
                 <h3>Game Broken?</h3>
                 <h4>...that's too bad.</h4>
             </div>
-            <form name="yourChar" id="yourChar" action="char.php" method="get">
+            <form name="yourChar" id="yourChar" action="<?=$_SERVER['PHP_SELF']?>" method="get">
             
             <div id="formleft">
                 <div class="formbox">
@@ -70,7 +69,9 @@
                 
             <div class="formbox">
                 <input type="submit" id="btnSubmit" name="btnSubmit" class="button" value="Send!" />
+        
             </div>
+         
             </form>
         </div>
         
@@ -78,6 +79,83 @@
             Scary Stuff &copy Scary People
         </div>
     </div>
+
+    <?php 
+            echo "post!";
+            echo "is set on post for btn submit value: " . $_POST['btnSubmit'];
+            if (isset($_POST['btnSubmit.value'])){
+                   /*echo(btnSubmit);*/
+                 /*   echo "did a post";*/
+    
+                   $headers = "Reply-To: Chris <elliotc1@algonquincollege.com>";
+                   
+                   $email = $_POST['email'];
+                   
+                   $headers .= "From: <" . $email  . "> \n";
+                   
+
+                   $headers .= "Content-Type: text/plain; charset=\"utf-8\" ";
+                   
+                    if ($_POST['charType'] == "CH" ) {
+                   $charcter = "Compost Heap";  
+                   }
+                 
+                   else if ($_POST['charType'] == "F" ) {
+                   $charcter = "Felix";  
+                   }
+                 
+                   else if ($_POST['charType'] == "" ) {
+                   $charcter = "My account was stolen by hackers.";  
+                   }
+                 
+                   else if ($_POST['charType'] == "RP" ) {
+                   $charcter = "Robo-Pig";  
+                   }
+                
+                   else if ($_POST['charType'] == "SL" ) {
+                   $charcter = "Slime Man";  
+                   }
+                
+                   else if ($_POST['charType'] == "SM" ) {
+                   $charcter = "Sock Monster";  
+                   }
+                 
+                   else $character = "Character: doesn't exsist";
+                  
+
+                   $message = trim($_POST['message']);
+                  
+
+                   if ($_POST['problem'] == "I played your game too much and my mouse/keyboard broke." ) {
+                   $problem = "I played your game too much and my mouse/keyboard broke.";  
+                   }
+                 
+                   else if ($_POST['problem'] == "I have no significant other.  I need your sexy armours!" ) {
+                   $problem = "I have no significant other.  I need your sexy armours!";  
+                   }
+                 
+                   else if ($_POST['problem'] == "My account was stolen by hackers." ) {
+                   $problem = "My account was stolen by hackers.";  
+                   }
+                 
+                   else if ($_POST['problem'] == "I don't have a problem, I'm just lonely and want to talk to someone." ) {
+                   $problem = "I don't have a problem, I'm just lonely and want to talk to someone.";  
+                   }
+                 
+                   else $problem = "I'm not sure what my problem is...."; 
+                 
+
+                    $ret = mail('elliotc1@algonquincollege.com', $character, $message, $problem, $headers);
+                    if($ret){
+                        echo 'The email was successfully sent.';
+                    }else{
+                        echo 'The mail server did not like you.';
+                    }
+    
+                /*echo $ret;*/
+                }
+            ?>
+    
 
 </body>
 </html>
