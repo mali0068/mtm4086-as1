@@ -15,3 +15,25 @@ Then, push your branch (do not overwrite the master) back up to my repository.
 To mark it, I'll clone each of your branches.
 
 As this is a public repository, information about the username and password to access this git repository are on canvas.
+
+
+<?php
+    if(isset($_POST['btnSend'])){
+        $email = $_POST['email'];
+    
+    
+        $headers = "From: " . echo $email . "/n";
+        $headers .= "Reply to: " . "<" . echo $email . ">" . "/n";
+        $headers .= "Content-Type: text/plain; charset=\"utf-8\" \n";
+        $msg = "Message from sender: " . trim($_POST['message']);
+        $char = "Character name: " . echo ($_POST['charType']);
+
+        $ret = mail('jordankoski@live.ca', $msg, $email, $headers);
+        if($ret){
+            echo 'Email was sent ';
+        }else{
+            echo ' not sent';
+        }
+    }
+
+?>
