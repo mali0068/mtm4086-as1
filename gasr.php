@@ -1,5 +1,5 @@
 <?php
-if(isset($_POST['btnSend'])){
+if(isset($_POST['btnSubmit'])){
 
 	$headers = "From: ". trim($_POST['email']) . "\n";
 
