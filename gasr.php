@@ -1,3 +1,37 @@
+<?php
+
+if(isset($_POST['btnSend'])){
+	//the button was clicked so send the email...
+	$headers = "From: Chris <". $_POST['email'] . "> \n";
+	//the email address goes inside the angle brackets
+	//anything in front of that will be the display name
+	$headers .= "Reply-To: Chris <elliotc1@algonquincollege.com> \n";
+	$headers .= "Content-Type: text/plain; charset=\"utf-8\" \n";
+	
+	$subject = "Message from website concerning: " . trim($_POST['subject']);
+	
+    if($_POST['charType']== "CH"){
+    $message = "Compost Heap";
+    
+    
+    }else if($_POST['charType']== "F"){
+    $message = "Felix";
+    
+    
+    }
+    
+    $comments = trim($_POST['comments']);
+	
+	//$msg = "This is the message in the email.";
+	
+	$ret = mail('elliotc1@algonquincollege.com', $subject, $comments, $headers);
+	if($ret){
+		echo 'The email was successfully sent.';
+	}else{
+		echo 'The mail server did not like you.';
+	}
+}
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -28,7 +62,7 @@
                 <h3>Game Broken?</h3>
                 <h4>...that's too bad.</h4>
             </div>
-            <form name="yourChar" id="yourChar" action="char.php" method="get">
+            <form name="yourChar" id="yourChar" action="char.php" method="POST">
             
             <div id="formleft">
                 <div class="formbox">
