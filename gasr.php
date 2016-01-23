@@ -39,20 +39,7 @@ if(isset($_POST['btnSubmit'])){
         $problem = "I don't have a problem, I'm just lonely and want to talk to someone.";
     
     }
-    
-//    if(isset($_POST['problem'])){
-//        
-//        $problem = $_POST['problem'];
-//        
-//        
-//    
-//    }
 
-    
-    
-    
-    
-    
 	//the button was clicked so send the email...
 	$headers = "From: <" . $email . "> \n";
 	//the email address goes inside the angle brackets
@@ -90,7 +77,7 @@ if(isset($_POST['btnSubmit'])){
     $comments .= "Problem Type: " . $problem . "\n";
 	
 //	$ret = mail('elliotc1@algonquincollege.com', $subject, $comments, $headers);
-	$ret = mail('janu101@gmail.com', $subject, $comments, $headers);
+	$ret = mail('elliotc1@algonquincollege.com', $subject, $comments, $headers);
 	if($ret){
 		echo 'The email was successfully sent.';
 	}else{
